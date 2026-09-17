@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-white/5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-cream font-sans antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(
+        900px 520px at 78% -8%,
+        rgba(62, 142, 110, 0.14),
+        transparent 70%
+      ),
+      radial-gradient(
+        700px 460px at 8% 12%,
+        rgba(23, 64, 47, 0.28),
+        transparent 72%
+      );
+    background-attachment: fixed;
+  }
+
+  /* Visible keyboard focus everywhere. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-sage/60 ring-offset-2 ring-offset-canvas;
+  }
+
+  /* Remove the number-input spinners: the fields are measurements, not counters. */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  ::selection {
+    background: rgba(169, 196, 165, 0.25);
+  }
+}
+
+@layer components {
+  /* The translucent card surface used across the app. */
+  .glass {
+    @apply rounded-card border border-white/[0.07] bg-white/[0.035] shadow-glass
+           backdrop-blur-xl;
+  }
+
+  .glass-soft {
+    @apply rounded-field border border-white/[0.06] bg-white/[0.025] backdrop-blur-md;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
